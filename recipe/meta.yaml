@@ -6,12 +6,11 @@ package:
   version: {{ version }}
 
 source:
-
   url: https://github.com/Simple-Robotics/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: d46df77d0f9c243ce918e07c56b690a47a7d81d8e2117f08a6b17c3dbc17e583
 
 build:
-  number: 0
+  number: 1
   skip: true  # [win]
 
 requirements:
@@ -21,18 +20,21 @@ requirements:
     - make  # [not win]
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
   host:
     - eigen
     - boost
     - python
     - cppad
     - eigenpy
+    - numpy  # [build_platform != target_platform]
   run:
     - eigen
     - boost
     - python
     - cppad
     - eigenpy
+    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
 
 test:
   requires:
