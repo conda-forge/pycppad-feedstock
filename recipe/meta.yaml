@@ -10,7 +10,7 @@ source:
   sha256: d46df77d0f9c243ce918e07c56b690a47a7d81d8e2117f08a6b17c3dbc17e583
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
@@ -26,6 +26,7 @@ requirements:
     - boost
     - python
     - cppad
+    - cppadcodegen
     - eigenpy
     - numpy  # [build_platform != target_platform]
   run:
@@ -33,6 +34,7 @@ requirements:
     - boost
     - python
     - cppad
+    - cppadcodegen
     - eigenpy
     - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
 
