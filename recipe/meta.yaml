@@ -1,5 +1,5 @@
 {% set name = "pycppad" %}
-{% set version = "1.2.0" %}
+{% set version = "1.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/Simple-Robotics/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: dcf91e55e4a0d75c5129e397578e6d3e95226cbb0ab7455e53f9689977f13e89
+  sha256: 91a67a1bc2d491546bb4df243cb20f2e2c8bb4d6062d8a2ec9c89f0643dc2817
 
 build:
-  number: 1
+  number: 0
   skip: true  # [win and vc<14]
 
 requirements:
@@ -30,7 +30,7 @@ requirements:
     - cppad
     - cppadcodegen  # [not win]
     - eigenpy
-    - numpy  # [build_platform != target_platform]
+    - numpy
   run:
     - eigen
     - boost
@@ -38,7 +38,7 @@ requirements:
     - cppad
     - cppadcodegen  # [not win]
     - eigenpy
-    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
+    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
@@ -53,7 +53,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE
-  summary: Python bindings for CppAD and CppADCodeGen using Boost.Python 
+  summary: Python bindings for CppAD and CppADCodeGen using Boost.Python
   dev_url: http://github.com/Simple-Robotics/pycppad
 
 extra:
