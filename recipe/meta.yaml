@@ -30,7 +30,7 @@ requirements:
     - cppad
     - cppadcodegen  # [not win]
     - eigenpy
-    - numpy  # [build_platform != target_platform]
+    - numpy
   run:
     - eigen
     - boost
@@ -38,7 +38,7 @@ requirements:
     - cppad
     - cppadcodegen  # [not win]
     - eigenpy
-    - {{ pin_compatible('numpy') }}  # [build_platform != target_platform]
+    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
