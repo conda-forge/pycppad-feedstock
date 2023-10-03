@@ -10,7 +10,7 @@ source:
   sha256: 31c042a132a9f6cc17d15b9a12a90f7118126707c4e5d5eff677644ae746c345
 
 build:
-  number: 3
+  number: 4
   skip: true  # [win and vc<14]
 
 requirements:
@@ -25,7 +25,7 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
   host:
     - eigen
-    - boost
+    - libboost-python-devel
     - python
     - cppad
     - cppadcodegen  # [not win]
@@ -33,7 +33,7 @@ requirements:
     - numpy
   run:
     - eigen
-    - boost
+    - libboost-python-devel
     - python
     - cppad
     - cppadcodegen  # [not win]
