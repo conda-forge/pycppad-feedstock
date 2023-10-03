@@ -25,7 +25,7 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
   host:
     - eigen
-    - boost
+    - libboost-python-devel
     - python
     - cppad
     - cppadcodegen  # [not win]
@@ -33,7 +33,7 @@ requirements:
     - numpy
   run:
     - eigen
-    - boost
+    - libboost-python-devel
     - python
     - cppad
     - cppadcodegen  # [not win]
