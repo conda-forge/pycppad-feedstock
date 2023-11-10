@@ -13,7 +13,7 @@ cxx_compiler_version:
 macos_machine:
 - x86_64-apple-darwin13.4.0
 numpy:
-- '1.21'
+- '1.22'
 pin_run_as_build:
   boost:
     max_pin: x.x.x
@@ -21,7 +21,7 @@ pin_run_as_build:
     min_pin: x.x
     max_pin: x.x
 python:
-- 3.10.* *_cpython
+- 3.9.* *_73_pypy
 target_platform:
 - osx-64
 zip_keys:
