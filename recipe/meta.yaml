@@ -58,6 +58,7 @@ about:
 
 extra:
   recipe-maintainers:
+    - olivier-roussel
     - jorisv
     - proyan
     - jcarpent
