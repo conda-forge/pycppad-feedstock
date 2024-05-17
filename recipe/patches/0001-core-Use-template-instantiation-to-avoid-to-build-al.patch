@@ -1,0 +1,69 @@
+From 8ab276c63274b9183c4ed67002e705819bf37285 Mon Sep 17 00:00:00 2001
+From: Joris Vaillant <joris.vaillant@inria.fr>
+Date: Fri, 17 May 2024 22:17:01 +0200
+Subject: [PATCH] core: Use template instantiation to avoid to build all
+ exposeType in the same translation unit
+
+---
+ CMakeLists.txt                       | 2 ++
+ src/cppad.cpp                        | 5 +++++
+ src/expose-type-double-row-major.cpp | 5 +++++
+ src/expose-type-double.cpp           | 5 +++++
+ 4 files changed, 17 insertions(+)
+ create mode 100644 src/expose-type-double-row-major.cpp
+ create mode 100644 src/expose-type-double.cpp
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bf08bb1..acd52ed 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -67,6 +67,8 @@ SET(${PROJECT_NAME}_HEADERS
+ 
+ SET(${PROJECT_NAME}_SOURCES
+   src/cppad.cpp
++  src/expose-type-double.cpp
++  src/expose-type-double-row-major.cpp
+   )
+ 
+ IF(BUILD_WITH_CPPAD_CODEGEN_BINDINGS)
+diff --git a/src/cppad.cpp b/src/cppad.cpp
+index a50e064..dfaf52e 100644
+--- a/src/cppad.cpp
++++ b/src/cppad.cpp
+@@ -9,6 +9,11 @@
+ #include "pycppad/cppad.hpp"
+ #include "pycppad/cppad-scalar.hpp"
+ 
++
++typedef ::CppAD::AD<double> ADScalar;
++extern template void eigenpy::exposeType<ADScalar>();
++extern template void eigenpy::exposeType<ADScalar,Eigen::RowMajor>();
++
+ namespace pycppad
+ {
+   
+diff --git a/src/expose-type-double-row-major.cpp b/src/expose-type-double-row-major.cpp
+new file mode 100644
+index 0000000..1034063
+--- /dev/null
++++ b/src/expose-type-double-row-major.cpp
+@@ -0,0 +1,5 @@
++#include "pycppad/cppad.hpp"
++#include "pycppad/cppad-scalar.hpp"
++
++typedef ::CppAD::AD<double> ADScalar;
++template void eigenpy::exposeType<ADScalar,Eigen::RowMajor>();
+diff --git a/src/expose-type-double.cpp b/src/expose-type-double.cpp
+new file mode 100644
+index 0000000..cb7e17d
+--- /dev/null
++++ b/src/expose-type-double.cpp
+@@ -0,0 +1,5 @@
++#include "pycppad/cppad.hpp"
++#include "pycppad/cppad-scalar.hpp"
++
++typedef ::CppAD::AD<double> ADScalar;
++template void eigenpy::exposeType<ADScalar>();
+-- 
+2.34.1
+

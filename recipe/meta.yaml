@@ -9,6 +9,10 @@ source:
   url: https://github.com/Simple-Robotics/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
   sha256: a8b1d79228ee1fda805d5dc16fa395eea4ccab4bb2c5bd203751d7acc09ca5c1
 
+  patches:
+    # Use template instantiation to avoid using all CI memory on Windows
+    - patches/0001-core-Use-template-instantiation-to-avoid-to-build-al.patch
+
 build:
   number: 5
   skip: true  # [win and vc<14]
