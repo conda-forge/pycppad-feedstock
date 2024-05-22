@@ -1,5 +1,5 @@
 {% set name = "pycppad" %}
-{% set version = "1.2.3" %}
+{% set version = "1.2.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/Simple-Robotics/{{ name }}/releases/download/v{{ version }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a8b1d79228ee1fda805d5dc16fa395eea4ccab4bb2c5bd203751d7acc09ca5c1
+  sha256: 9f5c25f9d35b6d9cd1b99a25a5e8931f60967fe18813c791c6a8dda78625c019
 
 build:
-  number: 4
+  number: 0
   skip: true  # [win and vc<14]
 
 requirements:
