@@ -10,7 +10,7 @@ source:
   sha256: 9f5c25f9d35b6d9cd1b99a25a5e8931f60967fe18813c791c6a8dda78625c019
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win and vc<14]
 
 requirements:
@@ -26,7 +26,8 @@ requirements:
     - eigen
     - libboost-python-devel
     - python
-    - cppad
+    # cppadcodegen is not compatible with cppad 20240000 when building with clang
+    - cppad <=20230000
     - cppadcodegen  # [not win]
     - eigenpy
     - numpy
@@ -34,7 +35,8 @@ requirements:
     - eigen
     - libboost-python-devel
     - python
-    - cppad
+    # cppadcodegen is not compatible with cppad 20240000 when building with clang
+    - cppad <=20230000
     - cppadcodegen  # [not win]
     - eigenpy
     - {{ pin_compatible('numpy') }}
