@@ -16,7 +16,7 @@ fi
 export BUILD_WITH_CPPAD_CODEGEN_BINDINGS=1
 echo $HOST
 if [[ $HOST =~ linux ]]; then
-  if [[ $HOST =~ aarch64 || $HOST =~ ppc64le ]]; then
+  if [[ $HOST =~ aarch64 || $HOST =~ powerpc64le ]]; then
     export BUILD_WITH_CPPAD_CODEGEN_BINDINGS=0
   fi
 fi
