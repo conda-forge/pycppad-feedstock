@@ -28,7 +28,7 @@ requirements:
     - python
     # cppadcodegen is not compatible with cppad 20240000 when building with clang
     - cppad <=20230000
-    - cppadcodegen  # [not win]
+    - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - eigenpy
     - numpy
   run:
@@ -37,7 +37,7 @@ requirements:
     - python
     # cppadcodegen is not compatible with cppad 20240000 when building with clang
     - cppad <=20230000
-    - cppadcodegen  # [not win]
+    - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - eigenpy
     - {{ pin_compatible('numpy') }}
 
