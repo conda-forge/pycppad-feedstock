@@ -14,11 +14,14 @@ fi
 
 # cppadcodegen package doesn't exists on linux_aarch64 and linux_ppc64le architecture
 export BUILD_WITH_CPPAD_CODEGEN_BINDINGS=1
+echo $HOST
 if [[ $HOST =~ linux ]]; then
   if [[ $HOST =~ aarch64 || $HOST =~ ppc64le ]]; then
     export BUILD_WITH_CPPAD_CODEGEN_BINDINGS=0
   fi
 fi
+
+echo BUILD_WITH_CPPAD_CODEGEN_BINDINGS $BUILD_WITH_CPPAD_CODEGEN_BINDINGS
 
 cmake ${CMAKE_ARGS} .. \
       -DCMAKE_BUILD_TYPE=Release \
