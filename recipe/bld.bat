@@ -3,7 +3,7 @@ mkdir build
 cd build
 
 cmake ^
-    -G "NMake Makefiles" ^
+    -GNinja ^
     -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
     -DCMAKE_BUILD_TYPE=Release ^
     -DPYTHON_SITELIB=%SP_DIR% ^
@@ -12,9 +12,9 @@ cmake ^
 if errorlevel 1 exit 1
 
 :: Build.
-cmake --build . --config Release
+ninja
 if errorlevel 1 exit 1
 
 :: Install.
-cmake --build . --config Release --target install
+ninja install
 if errorlevel 1 exit 1
