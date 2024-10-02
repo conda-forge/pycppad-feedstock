@@ -34,7 +34,7 @@ cmake ${CMAKE_ARGS} .. \
       -DPython3_NumPy_INCLUDE_DIR=$TARGET_NUMPY_INCLUDE_DIRS \
       -DPYTHON_EXECUTABLE=$PYTHON
 
-ninja
+ninja -j1
 ninja install
 
 if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
