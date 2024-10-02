@@ -12,7 +12,7 @@ cmake ^
 if errorlevel 1 exit 1
 
 :: Build.
-ninja
+ninja -j1
 if errorlevel 1 exit 1
 
 :: Install.
