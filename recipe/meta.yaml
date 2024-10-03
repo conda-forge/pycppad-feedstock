@@ -10,15 +10,15 @@ source:
   sha256: 9f5c25f9d35b6d9cd1b99a25a5e8931f60967fe18813c791c6a8dda78625c019
 
 build:
-  number: 5
-  skip: true  # [win and vc<14]
+  number: 6
+  skip: true  # [(win and vc<14) or (python_impl == 'pypy')]
 
 requirements:
   build:
     - {{ compiler('cxx') }}
     - {{ stdlib("c") }}
     - cmake
-    - make  # [not win]
+    - ninja
     - python                                 # [build_platform != target_platform]
     - cross-python_{{ target_platform }}     # [build_platform != target_platform]
     - numpy                                  # [build_platform != target_platform]
@@ -26,19 +26,12 @@ requirements:
     - eigen
     - libboost-python-devel
     - python
-    # cppadcodegen is not compatible with cppad 20240000 when building with clang
-    - cppad <=20230000
+    - cppad
     - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - eigenpy
     - numpy
   run:
-    - eigen
-    - libboost-python-devel
     - python
-    # cppadcodegen is not compatible with cppad 20240000 when building with clang
-    - cppad <=20230000
-    - cppadcodegen  # [not win and not aarch64 and not ppc64le]
-    - eigenpy
     - {{ pin_compatible('numpy') }}
 
 test:
