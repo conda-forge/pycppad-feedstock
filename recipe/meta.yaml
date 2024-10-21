@@ -10,7 +10,7 @@ source:
   sha256: 9f5c25f9d35b6d9cd1b99a25a5e8931f60967fe18813c791c6a8dda78625c019
 
 build:
-  number: 6
+  number: 7
   skip: true  # [(win and vc<14) or (python_impl == 'pypy')]
 
 requirements:
@@ -32,7 +32,6 @@ requirements:
     - numpy
   run:
     - python
-    - {{ pin_compatible('numpy') }}
 
 test:
   requires:
