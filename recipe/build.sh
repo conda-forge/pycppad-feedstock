@@ -3,13 +3,19 @@
 mkdir build
 cd build
 
-if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
-  export BUILD_NUMPY_INCLUDE_DIRS=$( $PYTHON -c "import numpy; print (numpy.get_include())")
-  export TARGET_NUMPY_INCLUDE_DIRS=$SP_DIR/numpy/core/include
+export BUILD_NUMPY_INCLUDE_DIRS=$( $PYTHON -c "import numpy; print (numpy.get_include())")
+export TARGET_NUMPY_INCLUDE_DIRS=$SP_DIR/numpy/core/include
 
+echo $BUILD_NUMPY_INCLUDE_DIRS
+echo $TARGET_NUMPY_INCLUDE_DIRS
+
+if [[ $CONDA_BUILD_CROSS_COMPILATION == 1 ]]; then
   echo "Copying files from $BUILD_NUMPY_INCLUDE_DIRS to $TARGET_NUMPY_INCLUDE_DIRS"
   mkdir -p $TARGET_NUMPY_INCLUDE_DIRS
   cp -r $BUILD_NUMPY_INCLUDE_DIRS/numpy $TARGET_NUMPY_INCLUDE_DIRS
+  export Python3_NumPy_INCLUDE_DIR=$TARGET_NUMPY_INCLUDE_DIRS
+else
+  export Python3_NumPy_INCLUDE_DIR=$BUILD_NUMPY_INCLUDE_DIRS
 fi
 
 # cppadcodegen package doesn't exists on linux_aarch64 and linux_ppc64le architecture
@@ -31,7 +37,7 @@ cmake ${CMAKE_ARGS} .. \
       -DCMAKE_CROSSCOMPILING_EMULATOR=$CONDA_BUILD_CROSS_COMPILATION \
       -DCMAKE_CXX_STANDARD=11 \
       -DBUILD_WITH_CPPAD_CODEGEN_BINDINGS=$BUILD_WITH_CPPAD_CODEGEN_BINDINGS \
-      -DPython3_NumPy_INCLUDE_DIR=$TARGET_NUMPY_INCLUDE_DIRS \
+      -DPython3_NumPy_INCLUDE_DIR=$Python3_NumPy_INCLUDE_DIR \
       -DPYTHON_EXECUTABLE=$PYTHON
 
 ninja -j1
