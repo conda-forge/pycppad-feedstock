@@ -10,7 +10,7 @@ source:
   sha256: 9f5c25f9d35b6d9cd1b99a25a5e8931f60967fe18813c791c6a8dda78625c019
 
 build:
-  number: 6
+  number: 7
   skip: true  # [(win and vc<14) or (python_impl == 'pypy')]
 
 requirements:
@@ -29,10 +29,17 @@ requirements:
     - cppad
     - cppadcodegen  # [not win and not aarch64 and not ppc64le]
     - eigenpy
-    - numpy
+    # On Windows, Numpy 2.0 don't allow to export the PY_ARRAY_UNIQUE_SYMBOL.
+    # This has been fixed in Numpy 2.1.
+    - numpy >=2.1      # [win and py>=310]
+    # Unfortunatly, Numpy 2.1 is not distributed with Python 3.9.
+    # We are forced to use Numpy 1 in this case.
+    - numpy >=1.19,<2  # [win and py<310]
+    - numpy            # [not win]
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - numpy >=2.1                    # [win and py>=310]
+    - {{ pin_compatible('numpy') }}  # [win and py<310]
 
 test:
   requires:
