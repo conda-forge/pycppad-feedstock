@@ -5,9 +5,11 @@ channel_sources:
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2019
+- vs2022
 libboost_python_devel:
-- '1.86'
+- '1.88'
+numpy:
+- '2'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -20,6 +22,3 @@ target_platform:
 - win-64
 vc:
 - '14'
-zip_keys:
-- - python
-  - python_impl
