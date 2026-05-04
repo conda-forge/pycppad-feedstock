@@ -7,7 +7,7 @@ channel_targets:
 cxx_compiler:
 - vs2022
 libboost_python_devel:
-- '1.88'
+- '1.90'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -20,6 +20,3 @@ target_platform:
 - win-64
 vc:
 - '14'
-zip_keys:
-- - python
-  - channel_sources
