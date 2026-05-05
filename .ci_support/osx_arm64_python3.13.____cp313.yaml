@@ -15,7 +15,7 @@ cxx_compiler:
 cxx_compiler_version:
 - '19'
 libboost_python_devel:
-- '1.88'
+- '1.90'
 macos_machine:
 - arm64-apple-darwin20.0.0
 numpy:
@@ -30,6 +30,3 @@ python_impl:
 - cpython
 target_platform:
 - osx-arm64
-zip_keys:
-- - python
-  - channel_sources
